@@ -1,7 +1,9 @@
 version: '3'
 services:
   wordpress:
-    image: wordpress
+    build:
+      context: .
+      dockerfile: ./docker/wordpress/Dockerfile
     restart: always
     ports:
       - 8080:80
@@ -15,7 +17,9 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:5.7
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
     restart: always
     environment:
       MYSQL_DATABASE: exampledb
@@ -23,7 +27,7 @@ services:
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - db:/var/lib/mysql
-volumes:
-  wordpress:
-  db:
+      - ./db:/var/lib/mysql
+# volumes:
+#   wordpress:
+#   db:
