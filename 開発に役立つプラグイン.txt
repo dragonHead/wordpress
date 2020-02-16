@@ -1,0 +1,20 @@
+開発に役立つプラグイン
+
+#debug barプラグイン
+
+インストールを有効化後、wp-config.phpに以下の設定を追加
+
+define('WP_DEBUG',true);
+define('SAVEQUERIES',true);
+
+#theme check/puglin checkプラグイン
+
+#WP-CLI
+wordpressをコマンドラインで操作するためのツール
+・wordpressのインストール
+・ユーザ作成
+・ユーザ権限のカスタマイズ
+・テーマのインストールや切り替え
+・プラグインのインストールや有効化
+・WP-Cronの設定
+
