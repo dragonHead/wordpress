@@ -18,3 +18,29 @@ wordpressをコマンドラインで操作するためのツール
 ・プラグインのインストールや有効化
 ・WP-Cronの設定
 
+--------------------
+ユーザー権限変更プラグイン
+User Role Editor(https://wordpress.org/plugins/user-role-editor/)
+ 既存権限グループに対する権限の付加
+ 新しい権限グループの作成
+ 新しい権限の作成
+
+Adminimize(https://wordpress.org/plugins/adminimize/)
+ 権限グループ(管理者、編集者、投稿者、寄稿者、購読者)ごとにダッシュボード機能を制限できる
+
+ アドミンバーの表示設定
+ 権限グループ共通の設定
+ 管理画面共通の設定
+ ダッシュボードの設定
+ 管理画面の配色の設定
+ その他設定
+
+WP Total Hacks(https://wordpress.org/plugins/wp-total-hacks/)
+ word pressでよく実施するカスタマイズを管理画面上から設定できるプラグイン
+　サイトの設定
+　投稿・ページの設定
+　外観の設定
+
+
+
+
