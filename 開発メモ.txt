@@ -23,3 +23,11 @@
  お知らせ
 
 
+投稿タイプの追加(registor_post_type)
+カスタムフィールドの追加(Advanced custom fieldsプラグインを使うとwordpressぽい)
+カスタムタクソノミー(registor_taxonomy)
+
+
+フック処理の流れを確認する。
+DebugBarActionsandFiltersAddonプラグイン
+検索でフックを探す
