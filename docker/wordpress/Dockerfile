@@ -1,16 +1,9 @@
 FROM wordpress:5.3.2-php7.3-apache
 
 RUN apt-get update
-
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 RUN useradd --user-group --create-home --shell /bin/false sitedeveloper
-
-# ENV COMPOSER_ALLOW_SUPERUSER 1
-# COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
-
-# ENV COMPOSER_HOME /composer
-# ENV PATH $PATH:/composer/vendor/bin
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
  && php wp-cli.phar --info \

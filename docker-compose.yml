@@ -1,6 +1,7 @@
-version: '3'
+version: "3"
 services:
   wordpress:
+    container_name: ${WORDPRESS_CONTAINER_NAME}
     build:
       context: .
       dockerfile: ./docker/wordpress/Dockerfile
@@ -8,24 +9,25 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
     volumes:
       - ./wordpress:/var/www/html
     depends_on:
-      - db
-  db:
+      - wordpressdb
+  wordpressdb:
+    container_name: ${WORDPRESS_DB_CONTAINER_NAME}
     build:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
     restart: always
     environment:
-      TZ: Asia/Tokyo
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: ${TIME_ZONE}
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
