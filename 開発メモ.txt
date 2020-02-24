@@ -31,3 +31,7 @@
 フック処理の流れを確認する。
 DebugBarActionsandFiltersAddonプラグイン
 検索でフックを探す
+
+https://wordpress.org/plugins/theme-check/
+https://underscores.me/
+
