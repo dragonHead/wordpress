@@ -1,7 +1,18 @@
-global$wp_roles;if(empty($wp_roles)){$wp_roles=newWP_Roles();}$wp_roles>add_role('accountant','Accountant',array('read','edit_posts',));
+global$wp_roles;
+if(empty($wp_roles)){
+    $wp_roles=newWP_Roles();
+}
+$wp_roles>add_role('accountant','Accountant',array('read','edit_posts',));
+
 https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/add_menu_page
 https://haniwaman.com/wp-menu-remove/
 https://elearn.jp/wpman/column/c20120123_01.html
 https://www.hiskip.com/wp/plugin/post/restrict-category/16384.html
 https://recost-design.com/1816.html
+https://hirashimatakumi.com/blog/4341.html
+https://tontotakumi.com/web-seisaku/multi-login/#toc6
+https://papillon.jp.net/program/wordpress/182
+https://www.nxworld.net/wordpress/wp-get-current-post-type.html
 
+add_action('init',function(){register_post_type('products',array('labels'=>array('name'=>'商品','name_admin_bar'=>'商品','singular_name'=>'商品','add_new_item'=>'新規商品を追加','view_item'=>'商品情報を表示','search_items'=>'商品データを検索','not_found'=>'商品データが見つかりませんでした','not_found_in_trash'=>'ゴミ箱内に商品データが見つかりませんでした','featured_image'=>'FeaturedImage','set_featured_image'=>'Setfeaturedimage','remove_featured_image'=>'Removefeaturedimage','use_featured_image'=>'Useasfeaturedimage',),'public'=>true,'has_archive'=>true,'hierarchical'=>false,'capability_type'=>'post','map_meta_cap'=>true,'delete_with_user'=>true,
+'rewrite'=>array('slig'=>'products','with_front'=>false),'menu_position'=>5,'menu_icon'=>'dashiconscart','supports'=>array('title','editor','thumbnail')));});
