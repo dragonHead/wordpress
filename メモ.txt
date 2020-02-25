@@ -1,0 +1,7 @@
+global$wp_roles;if(empty($wp_roles)){$wp_roles=newWP_Roles();}$wp_roles>add_role('accountant','Accountant',array('read','edit_posts',));
+https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/add_menu_page
+https://haniwaman.com/wp-menu-remove/
+https://elearn.jp/wpman/column/c20120123_01.html
+https://www.hiskip.com/wp/plugin/post/restrict-category/16384.html
+https://recost-design.com/1816.html
+
