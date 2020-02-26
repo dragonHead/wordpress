@@ -42,5 +42,4 @@ WP Total Hacks(https://wordpress.org/plugins/wp-total-hacks/)
 　外観の設定
 
 
-
-
+Debug Bar Actions and Filters Addon
