@@ -43,9 +43,11 @@ services:
     networks:
       - my_wordpress_network
   mailhog:
-    image: mailhog/mailhog
+    container_name: ${MAIL_CONTAINER_NAME}
+    build:
+      context: .
+      dockerfile: ./docker/mail/Dockerfile
     restart: always
-    container_name: my-container-name-mailhog
     ports:
       - "8025:8025"
       - "1025:1025"
