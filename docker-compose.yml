@@ -15,6 +15,9 @@ services:
       WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
     volumes:
       - ./wordpress:/var/www/html
+      - ./docker/wordpress/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - my_wordpress_network
     depends_on:
       - wordpressdb
   wordpressdb:
@@ -28,7 +31,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: ${TIME_ZONE}
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 13306:3306
@@ -37,6 +40,19 @@ services:
       - ./docker/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/sqls:/docker-entrypoint-initdb.d
     tty: true
+    networks:
+      - my_wordpress_network
+  mailhog:
+    image: mailhog/mailhog
+    restart: always
+    container_name: my-container-name-mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    networks:
+      - my_wordpress_network
 # volumes:
 #   wordpress:
 #   db:
+networks:
+  my_wordpress_network:
