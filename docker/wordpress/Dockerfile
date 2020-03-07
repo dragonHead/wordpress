@@ -11,6 +11,20 @@ RUN curl --location --output /usr/local/bin/mhsendmail https://github.com/mailho
 RUN chmod +x /usr/local/bin/mhsendmail
 RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --from=no-reply@docker.dev"' > /usr/local/etc/php/conf.d/mailhog.ini
 
+#composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+
+ENV COMPOSER_HOME /composer
+ENV PATH $PATH:/composer/vendor/bin
+
+#nodejs
+COPY --from=node:13.10 /usr/local/bin/node /usr/bin/node
+RUN ln -s /usr/bin/node /usr/bin/nodejs
+
+RUN curl -L https://www.npmjs.com/install.sh | sh
+
+#WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
  && php wp-cli.phar --info \
  && chmod +x wp-cli.phar \
