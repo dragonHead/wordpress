@@ -1,3 +1,4 @@
 FROM mailhog/mailhog
 
-LABEL wp_mailhog.build.version="1.0.0"
+LABEL sample.version="1.0"
+LABEL sample.description="wordpess mail sample"

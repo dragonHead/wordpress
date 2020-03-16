@@ -1,7 +1,10 @@
 FROM wordpress:5.3.2-php7.3-apache
 
+LABEL sample.version="1.0"
+LABEL sample.description="wordpess sample"
+
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends vim tmux \
+  && apt-get install -y --no-install-recommends tmux vim \
   && apt-get clean
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
