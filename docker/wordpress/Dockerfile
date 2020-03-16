@@ -6,6 +6,8 @@ LABEL sample.description="wordpess sample"
 RUN apt-get update \
   && apt-get clean
 
+RUN useradd --user-group --create-home --shell /bin/bash devuser
+
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # mailhog
@@ -34,4 +36,5 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
   && mv wp-cli.phar /usr/local/bin/wp \
   && wp --info
 
+#USER devuser
 WORKDIR /var/www/html
