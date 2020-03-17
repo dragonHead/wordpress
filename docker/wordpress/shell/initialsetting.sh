@@ -37,7 +37,7 @@ wp rewrite structure '/archives/%post_id%'
 wp plugin install wp-multibyte-patch --activate
 wp plugin install backwpup --activate
 wp plugin install classic-editor --activate
-
+wp plugin install password-protected
 
 # コアアップデート
 wp core update
