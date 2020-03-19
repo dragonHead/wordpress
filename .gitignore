@@ -29,3 +29,5 @@ docker/mysql/data/
 *.sqlite
 
 # End of https://www.gitignore.io/api/wordpress
+
+docker/mail/data/
