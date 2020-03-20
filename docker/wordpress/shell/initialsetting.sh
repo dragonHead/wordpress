@@ -28,6 +28,7 @@ wp theme uninstall twentysixteen twentyseventeen twentynineteen
 
 # 不要なプラグインををアンインストール
 wp plugin uninstall hello
+wp plugin uninstall akismet
 
 # パーマリンク設定
 wp rewrite structure '/archives/%post_id%'
