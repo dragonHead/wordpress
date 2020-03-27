@@ -30,8 +30,8 @@ ENV COMPOSER_HOME /usr/bin/composer
 ENV PATH $PATH:$COMPOSER_HOME/vendor/bin
 
 #nodejs
-COPY --from=node:13.10 /usr/local/bin/node /usr/local/bin/node
-COPY --from=node:13.10 /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=node:13.11 /usr/local/bin/node /usr/local/bin/node
+COPY --from=node:13.11 /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -s /usr/local/bin/node /usr/bin/node \
   && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/bin/npm \
   &&  ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/bin/npx
