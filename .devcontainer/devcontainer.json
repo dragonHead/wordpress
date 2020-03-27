@@ -1,0 +1,15 @@
+{
+    "name": "wordpress",
+    "dockerComposeFile": [
+      "../docker-compose.yml"
+    ],
+    "service": "wordpress",
+    "workspaceFolder": "/var/www/html",
+    "extensions": [
+      "felixfbecker.php-debug",
+      "felixfbecker.php-intellisense",
+      "firefox-devtools.vscode-firefox-debug",
+      "msjsdiag.debugger-for-chrome",
+      "msjsdiag.debugger-for-edge"
+    ]
+}

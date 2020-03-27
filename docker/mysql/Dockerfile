@@ -13,3 +13,5 @@ ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+USER mysql
