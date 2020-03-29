@@ -26,8 +26,8 @@ RUN curl --location --output /usr/local/bin/mhsendmail https://github.com/mailho
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
 
-ENV COMPOSER_HOME /usr/bin/composer
-ENV PATH $PATH:$COMPOSER_HOME/vendor/bin
+ENV COMPOSER_HOME /composer
+ENV PATH $PATH:/composer/vendor/bin
 
 #nodejs
 COPY --from=node:13.12.0-buster-slim /usr/local/bin/node /usr/local/bin/node
