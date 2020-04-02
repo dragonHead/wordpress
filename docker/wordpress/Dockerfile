@@ -1,4 +1,4 @@
-FROM wordpress:5.3.2-php7.3-apache
+FROM wordpress:5.4.0-php7.3-apache
 
 LABEL sample.version="1.0"
 LABEL sample.description="wordpess sample"
