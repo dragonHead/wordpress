@@ -24,7 +24,7 @@ RUN curl --location --output /usr/local/bin/mhsendmail https://github.com/mailho
 
 #composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
-COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
 ENV COMPOSER_HOME /composer
 ENV PATH $PATH:/composer/vendor/bin
