@@ -42,4 +42,12 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
   && mv wp-cli.phar /usr/local/bin/wp \
   && wp --info
 
+WORKDIR /var/www/html/src
+
+COPY ./src .
+RUN npm install \
+  && npm audit fix
+
+RUN composer install
+
 WORKDIR /var/www/html
