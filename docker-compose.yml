@@ -16,6 +16,8 @@ services:
     volumes:
       - ./wordpress:/var/www/html
       - ./docker/wordpress/ini/php.ini:/usr/local/etc/php/php.ini
+      - ./.vscode:/var/www/html/.vscode
+      - ./src:/var/www/html/src
     networks:
       - my_wordpress_network
     depends_on:

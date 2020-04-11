@@ -7,7 +7,15 @@
     "workspaceFolder": "/var/www/html",
     "extensions": [
       "felixfbecker.php-debug",
+      "neilbrayfield.php-docblocker",
       "felixfbecker.php-intellisense",
+      "ikappas.phpcs",
+      "esbenp.prettier-vscode",
+      "hex-ci.stylelint-plus",
+      "mikestead.dotenv",
+      "dbaeumer.vscode-eslint",
+      "eg2.vscode-npm-script",
+      "christian-kohler.npm-intellisense",
       "firefox-devtools.vscode-firefox-debug",
       "msjsdiag.debugger-for-chrome",
       "msjsdiag.debugger-for-edge"
