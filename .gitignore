@@ -1,3 +1,4 @@
+docker/mail/data/
 docker/mysql/data/
 wordpress/
 src/node_modules/
@@ -32,5 +33,3 @@ src/vendor/
 *.sqlite
 
 # End of https://www.gitignore.io/api/wordpress
-
-docker/mail/data/
