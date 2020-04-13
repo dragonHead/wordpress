@@ -1,11 +1,13 @@
+const path = require('path');
+
 
 module.exports = {
     entry: {
-        app: `./src/js/app.js`,
+        app: `./themes/sample/js/app.js`,
     },
     output: {
       filename: "js/[name].js",
-      // path: path.resolve(__dirname + '/docs'),
+      path: path.resolve('../wp-content/themes/sample'),
     },
     module: {
       rules: [
