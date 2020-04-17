@@ -6,13 +6,11 @@ const webpackStream = require("webpack-stream");
 const webpack = require("webpack");
 const webpackDevConfig = require("./webpack.dev.js");
 const webpackProdConfig = require("./webpack.prod.js");
-const jsonmin = require("gulp-jsonminify");
-const connect = require("gulp-connect");
 const del = require("del");
 
 const paths = {
-  srcDir: "./src",
-  distDir: "./docs"
+  srcDir: "./themes/sample",
+  distDir: "../wp-content/themes/sample"
 };
 
 // clean
@@ -22,6 +20,12 @@ const clean = () => del([`${paths.distDir}/**`, "!dist"], { force: true });
 function html() {
   return src(`${paths.srcDir}/**/*.html`)
     .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(dest(paths.distDir));
+}
+
+// php
+function php() {
+  return src(`${paths.srcDir}/**/*.php`)
     .pipe(dest(paths.distDir));
 }
 
@@ -35,16 +39,18 @@ function robots() {
   return src(`${paths.srcDir}/robots.txt`).pipe(dest(paths.distDir));
 }
 
+// img
 function img() {
   return src(`${paths.srcDir}/img/**/*.+(png|jpeg|jpg|svg)`)
     .pipe(dest(`${paths.distDir}/img`));
 }
 
+// css
 function css() {
-  return src(`${paths.srcDir}/css/**/*.css`)
+  return src(`${paths.srcDir}/**/*.css`)
     .pipe(cleanCSS())
-    .pipe(concat('app.css'))
-    .pipe(dest(`${paths.distDir}/css`));
+    .pipe(concat('style.css'))
+    .pipe(dest(paths.distDir));
 }
 
 // js
@@ -58,60 +64,43 @@ function prodjs() {
     .pipe(dest(`${paths.distDir}`));
 }
 
-// manifest.json
-function pwajson() {
-  return src(`${paths.srcDir}/manifest.json`)
-    .pipe(jsonmin())
-    .pipe(dest(paths.distDir));
-}
-
 // watch
 function wt() {
-  watch("./src/**/*.html", series(html));
-  watch("./src/sitemap.xml", series(xml));
-  watch("./src/robots.txt", series(robots));
-  watch("./src/manifest.json", series(pwajson));
-  watch("./src/css/**/*.css", series(css));
-  watch("./src/js/**/*.js", series(devjs));
-}
-
-function server() {
-  connect.server({
-    root: paths.distDir,
-    host: "0.0.0.0",
-    port: "8080",
-    debug: true
-  });
+  watch(`./${paths.srcDir}/**/*.html`, series(html));
+  watch(`./${paths.srcDir}/sitemap.xml`, series(xml));
+  watch(`./${paths.srcDir}/robots.txt`, series(robots));
+  watch(`./${paths.srcDir}/**/*.css`, series(css));
+  watch(`./${paths.srcDir}/js/**/*.js`, series(devjs));
 }
 
 const devbuild = series(
   clean,
   parallel(
-    html
-    ,robots
-    ,xml
-    ,img
-    ,pwajson
-    ,devjs
-    ,css
+    php
+   ,html
+   ,css
+   ,robots
+   ,xml
+   ,img
+   ,devjs
   ),
 );
 
 const prodbuild = series(
   clean,
   parallel(
-    html
-    ,robots
-    ,xml
-    ,img
-    ,pwajson
-    ,prodjs
-    ,css
+    php
+   ,html
+   ,robots
+   ,xml
+   ,img
+   ,prodjs
+   ,css
   ),
 );
 
 const prod = series(prodbuild);
-const dev = series(devbuild, parallel(wt, server));
+const dev = series(devbuild, parallel(wt));
 
 exports.default = prod;
 exports.dev = dev;
