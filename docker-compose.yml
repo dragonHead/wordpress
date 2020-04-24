@@ -7,7 +7,7 @@ services:
       dockerfile: ./docker/wordpress/Dockerfile
     restart: always
     ports:
-      - 8080:80
+      - 8899:80
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
@@ -53,8 +53,8 @@ services:
       dockerfile: ./docker/mail/Dockerfile
     restart: always
     ports:
-      - "8025:8025"
-      - "1025:1025"
+      - "8225:8025"
+      - "1225:1025"
     environment:
       MH_STORAGE: maildir
       MH_MAILDIR_PATH: /tmp
