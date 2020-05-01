@@ -1,6 +1,6 @@
 {
     "require-dev": {
-        "phpunit/phpunit": "^9.1.3",
+        "phpunit/phpunit": "^9.1.4",
         "phpstan/phpstan": "^0.12.19",
         "phpunit/php-code-coverage": "^8.0",
         "phpstan/extension-installer": "^1.0",
