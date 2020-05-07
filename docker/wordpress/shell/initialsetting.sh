@@ -36,8 +36,9 @@ wp rewrite structure '/archives/%post_id%'
 # プラグインのインストール
 # https://ja.wordpress.org/plugins/
 wp plugin install wp-multibyte-patch --activate
-wp plugin install backwpup --activate
+wp plugin install updraftplus --activate
 wp plugin install all-in-one-wp-security-and-firewall --activate
+wp plugin install wordfence --activate
 wp plugin install password-protected
 
 # コアアップデート
