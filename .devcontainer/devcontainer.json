@@ -15,9 +15,6 @@
       "mikestead.dotenv",
       "dbaeumer.vscode-eslint",
       "eg2.vscode-npm-script",
-      "christian-kohler.npm-intellisense",
-      "firefox-devtools.vscode-firefox-debug",
-      "msjsdiag.debugger-for-chrome",
-      "msjsdiag.debugger-for-edge"
+      "christian-kohler.npm-intellisense"
     ]
 }
