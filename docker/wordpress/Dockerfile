@@ -1,4 +1,4 @@
-FROM wordpress:5.4.2-php7.4-apache
+FROM wordpress:5.5.1-php7.4-apache
 
 LABEL sample.version="1.0"
 LABEL sample.description="wordpess sample"
@@ -30,8 +30,8 @@ ENV COMPOSER_HOME /composer
 ENV PATH $PATH:/composer/vendor/bin
 
 #nodejs
-COPY --from=node:14.7.0-buster-slim /usr/local/bin/node /usr/local/bin/node
-COPY --from=node:14.7.0-buster-slim /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=node:14.10.1-buster-slim /usr/local/bin/node /usr/local/bin/node
+COPY --from=node:14.10.1-buster-slim /usr/local/lib/node_modules /usr/local/lib/node_modules
 RUN ln -s /usr/local/bin/node /usr/bin/node \
   && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/bin/npm \
   &&  ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/bin/npx

@@ -64,8 +64,5 @@ services:
       - wordpress
     networks:
       - my_wordpress_network
-# volumes:
-#   wordpress:
-#   wordpressdb:
 networks:
   my_wordpress_network:
