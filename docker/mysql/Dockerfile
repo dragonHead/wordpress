@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:5.7.32
 
 LABEL sample.version="1.0"
 LABEL sample.description="wordpess DB sample"
