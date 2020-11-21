@@ -16,10 +16,6 @@ services:
     volumes:
       - ./wordpress:/var/www/html
       - ./docker/wordpress/ini/php.ini:/usr/local/etc/php/php.ini
-      - ./.vscode:/var/www/html/.vscode
-      - ./src:/var/www/html/src
-      - /var/www/html/src/node_modules
-      - /var/www/html/src/vendor
     networks:
       - my_wordpress_network
     depends_on:
@@ -35,7 +31,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: ${TIME_ZONE}
-      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 13306:3306
@@ -43,7 +39,6 @@ services:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/sqls:/docker-entrypoint-initdb.d
-    tty: true
     networks:
       - my_wordpress_network
   mailhog:

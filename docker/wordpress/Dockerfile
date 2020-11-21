@@ -7,14 +7,16 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends curl vim locales locales-all \
   && apt-get clean
 
+# locale
 RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
 
-RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+# timezon
+ENV TZ Asia/Tokyo
 
-#
+# user
 RUN useradd --user-group --create-home --shell /bin/bash devuser
 
 # mailhog
@@ -24,7 +26,7 @@ RUN curl --location --output /usr/local/bin/mhsendmail https://github.com/mailho
 
 #composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
 
 ENV COMPOSER_HOME /composer
 ENV PATH $PATH:/composer/vendor/bin
@@ -41,13 +43,5 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
   && chmod +x wp-cli.phar \
   && mv wp-cli.phar /usr/local/bin/wp \
   && wp --info
-
-WORKDIR /var/www/html/src
-
-COPY ./src .
-RUN npm install \
-  && npm audit fix
-
-RUN composer install
 
 WORKDIR /var/www/html
