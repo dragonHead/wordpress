@@ -24,7 +24,7 @@ services:
       - ./.vscode:/home/dev001/public_html/.vscode
       - ./docker/php/ini/php.ini:/usr/local/etc/php/php.ini
       - ./docker/php/ini/www.conf:/usr/local/etc/php-fpm.d/www.conf
-      # - ./docker/php/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/php/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     depends_on:
       - db
   db:
