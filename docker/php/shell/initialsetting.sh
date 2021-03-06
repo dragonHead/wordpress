@@ -3,7 +3,7 @@
 #https://wp-cli.org/ja/
 
 #wp core download --locale=ja
-#wp core config --dbname=exampledb --dbuser=exampleuser --dbpass=examplepass --dbhost=wordpressdb --dbprefix=[テーブル接頭辞 default: wp_]
+#wp core config --dbname=dbtest --dbuser=dbtet01 --dbpass=dbtest01 --dbhost=phptest_db --dbprefix=[テーブル接頭辞 default: wp_]
 
 # サイトインストール
 wp core install --url=http://localhost:8080/ --title=test --admin_user=site-developer --admin_password=test01 --admin_email=test@test.com

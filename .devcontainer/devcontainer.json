@@ -3,8 +3,9 @@
     "dockerComposeFile": [
       "../docker-compose.yml"
     ],
-    "service": "wordpress",
-    "workspaceFolder": "/var/www/html",
+    "service": "php",
+    "remoteUser": "dev001",
+    "workspaceFolder": "/home/dev001/public_html",
     "extensions": [
     ]
 }

@@ -1,27 +1,34 @@
 version: "3"
 services:
-  wordpress:
-    container_name: ${WORDPRESS_CONTAINER_NAME}
+  httpd:
+    container_name: ${WEB_CONTAINER_NAME}
+    build:
+      context: ./docker/httpd
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/home/dev001/public_html/wordpress
+      - ./docker/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./docker/httpd/httpd-userdir.conf:/usr/local/apache2/conf/extra/httpd-userdir.conf
+      - ./docker/httpd/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+    depends_on:
+      - php
+  php:
+    container_name: ${APP_CONTAINER_NAME}
     build:
       context: .
-      dockerfile: ./docker/wordpress/Dockerfile
-    restart: always
-    ports:
-      - 8899:80
-    environment:
-      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
-      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      dockerfile: ./docker/php/Dockerfile
+    user: dev001
     volumes:
-      - ./wordpress:/var/www/html
-      - ./docker/wordpress/ini/php.ini:/usr/local/etc/php/php.ini
-    networks:
-      - my_wordpress_network
+      - ./src:/home/dev001/public_html/wordpress
+      - ./.vscode:/home/dev001/public_html/.vscode
+      - ./docker/php/ini/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/ini/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      # - ./docker/php/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     depends_on:
-      - wordpressdb
-  wordpressdb:
-    container_name: ${WORDPRESS_DB_CONTAINER_NAME}
+      - db
+  db:
+    container_name: ${MYSQL_CONTAINER_NAME}
     build:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
@@ -31,33 +38,26 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: ${TIME_ZONE}
-      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 13306:3306
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./docker/mysql/sqls:/docker-entrypoint-initdb.d
-    networks:
-      - my_wordpress_network
+#      - ./docker/mysql/sqls:/docker-entrypoint-initdb.d
+    tty: true
   mailhog:
-    container_name: ${MAIL_CONTAINER_NAME}
     build:
       context: .
-      dockerfile: ./docker/mail/Dockerfile
-    restart: always
+      dockerfile: ./docker/mailhog/Dockerfile
     ports:
-      - "8225:8025"
-      - "1225:1025"
+      - "8025:8025"
+      - "1025:1025"
     environment:
       MH_STORAGE: maildir
       MH_MAILDIR_PATH: /tmp
     volumes:
-      - "./docker/mail/data:/tmp"
+      - "./docker/mailhog/data:/tmp"
     depends_on:
-      - wordpress
-    networks:
-      - my_wordpress_network
-networks:
-  my_wordpress_network:
+      - php
