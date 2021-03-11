@@ -6,11 +6,13 @@ services:
       context: ./docker/httpd
     ports:
       - "8080:80"
-    volumes:
+      - "4430:443"
+      volumes:
       - ./src:/home/dev001/public_html/wordpress
       - ./docker/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./docker/httpd/httpd-userdir.conf:/usr/local/apache2/conf/extra/httpd-userdir.conf
       - ./docker/httpd/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+      - ./docker/httpd/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf
     depends_on:
       - php
   php:
@@ -38,7 +40,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: ${TIME_ZONE}
-      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 13306:3306
