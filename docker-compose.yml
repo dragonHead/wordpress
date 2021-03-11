@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
       - "4430:443"
-      volumes:
+    volumes:
       - ./src:/home/dev001/public_html/wordpress
       - ./docker/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./docker/httpd/httpd-userdir.conf:/usr/local/apache2/conf/extra/httpd-userdir.conf
