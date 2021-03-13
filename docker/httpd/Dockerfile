@@ -2,6 +2,7 @@ FROM httpd:2.4.46
 
 LABEL sample.version="1.0"
 LABEL sample.description="wordpress http server"
+
 # apt update
 RUN set -ex apk --no-cache add libpq-dev postgresql-dev
 RUN apt-get update && apt-get install -y --no-install-recommends \
