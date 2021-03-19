@@ -35,6 +35,7 @@ services:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
     restart: always
+    user: mysql
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -47,7 +48,7 @@ services:
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
-#      - ./docker/mysql/sqls:/docker-entrypoint-initdb.d
+#     - ./docker/mysql/sqls:/docker-entrypoint-initdb.d
     tty: true
   mailhog:
     build:

@@ -4,10 +4,9 @@ LABEL sample.version="1.0"
 LABEL sample.description="wordpress http server"
 
 # apt update
-RUN set -ex apk --no-cache add libpq-dev postgresql-dev
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    locales locales-all openssl \
-    && apt-get clean
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends locales locales-all openssl \
+  && apt-get clean
 
 # locale
 RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
@@ -38,5 +37,5 @@ RUN mkdir ssl.crt \
     && cp myCA.pem ca-bundle.crt
 
 # create user
-RUN groupadd apache
-RUN useradd -g apache apache
+RUN groupadd apache \
+  && useradd -g apache apache
