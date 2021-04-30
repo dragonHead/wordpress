@@ -1,4 +1,4 @@
-FROM php:7.4.16-fpm-buster
+FROM php:7.4.18-fpm-buster
 
 LABEL sample.version="1.0"
 LABEL sample.description="app"
@@ -45,11 +45,11 @@ USER dev001
 WORKDIR $HOME
 
 # nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 # npm install
 SHELL ["/bin/bash", "-c"]
 RUN source $HOME/.nvm/nvm.sh \
-  && nvm install v14.6.0
+  && nvm install v14.6.1
 SHELL ["/bin/sh", "-c"]
 
 # composer

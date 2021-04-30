@@ -1,4 +1,4 @@
-FROM mysql:5.7.33
+FROM mysql:5.7.34
 
 LABEL sample.version="1.0"
 LABEL sample.description="wordpress DB"
