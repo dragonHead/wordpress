@@ -38,6 +38,8 @@ wp rewrite structure '/archives/%post_id%'
 wp plugin install wp-multibyte-patch --activate
 wp plugin install updraftplus --activate
 wp plugin install all-in-one-wp-security-and-firewall --activate
+wp plugin install WPScan
+wp plugin install easy-updates-manager
 wp plugin install wordfence --activate
 wp plugin install password-protected
 
