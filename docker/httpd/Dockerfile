@@ -1,4 +1,4 @@
-FROM httpd:2.4.46
+FROM httpd:2.4.48
 
 LABEL sample.version="1.0"
 LABEL sample.description="wordpress http server"
