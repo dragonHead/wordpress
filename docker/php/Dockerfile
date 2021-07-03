@@ -1,4 +1,4 @@
-FROM php:7.4.20-fpm-buster
+FROM php:7.4.21-fpm-buster
 
 LABEL sample.version="1.0"
 LABEL sample.description="app"
