@@ -49,7 +49,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | b
 # npm install
 SHELL ["/bin/bash", "-c"]
 RUN source $HOME/.nvm/nvm.sh \
-  && nvm install v16.4.2
+  && nvm install v16.5.0
 SHELL ["/bin/sh", "-c"]
 
 # composer
